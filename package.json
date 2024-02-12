@@ -1,0 +1,67 @@
+{
+  "name": "json-schema-generators",
+  "version": "1.0.0",
+  "description": "Generate JSON schema from various sources",
+  "main": "dist/index.cjs",
+  "type": "module",
+  "module": "dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "dev": "tsup --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sbarre/json-schema-generators.git"
+  },
+  "keywords": [
+    "json",
+    "schema",
+    "generator"
+  ],
+  "author": "Seb Barre <sbarre@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sbarre/json-schema-generators/issues"
+  },
+  "homepage": "https://github.com/sbarre/json-schema-generators#readme",
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "contentful": "^10.6.21",
+    "dotenv": "^16.4.1",
+    "sinon": "^17.0.1",
+    "tap": "^18.7.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {},
+  "tsup": {
+    "dts": true,
+    "bundle": true,
+    "treeshake": true,
+    "target": "node18",
+    "format": [
+      "esm",
+      "cjs"
+    ],
+    "entry": [
+      "lib/index.ts"
+    ],
+    "onSuccess": "mkdir -p dist/wasm && cp -R lib/wasm/*.wasm dist/wasm",
+    "loader": {
+      ".wasm": "file"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ]
+}
